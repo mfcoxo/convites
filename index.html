@@ -65,6 +65,13 @@
 			}
 			isOpen = !isOpen;
 		});
+	
+		// if its mobile scale the container
+		if (window.innerWidth < 768) {
+			container.classList.add('animate-mobile');
+		} else {
+			container.classList.add('animate');
+		}
 	</script>
 </body>
 </html>
