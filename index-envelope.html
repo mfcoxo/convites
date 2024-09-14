@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Convite</title>
+	<link rel="stylesheet" href="index-envelope.css">
+	
+</head>
+
+<body>
+	<div id="container" class="container open">
+		<div class="back">
+			<div class="paper">
+				<div class="names">
+					<img src="images/nomes.png" alt="Nomes dos noivos" />
+				</div>
+				<div class="wedding-date">
+					<div>
+						<div>Maio</div>
+					</div>
+					<div class="day">
+						<div>24</div>
+					</div>
+					<div>
+						<div>2025</div>
+					</div>
+				</div>
+				<div class="directions">
+					<h2>Cerimónia</h2>
+					<div>Igreja Paroquial da Abóboda, pelas 12h00</div>
+					<h2>Copo D'água</h2>
+					<div>Quinta da Barreta, em Alcabideche</div>
+				</div>
+				<div class="branch-left"></div>
+				<div class="branch-right"></div>
+			</div>
+			<div class="cover">
+				<div class="seal">
+					<img src="images/selo.png" alt="Selo" />
+				</div>
+			</div>
+			<div class="bottom">
+			</div>
+			<div class="bottom-fix">
+			</div>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+	<script type="text/javascript">
+		let isOpen = false;
+		let timer;
+		const container = document.querySelector('#container');
+		container.addEventListener('click', () => {
+			if (!isOpen) {
+				container.classList.add('open');
+				timer = setTimeout(() => {
+					confetti({
+						particleCount: 100,
+						spread: 70,
+					});
+				}, 3000);
+			}else{
+				clearTimeout(timer);
+				container.classList.remove('open');
+			}
+			isOpen = !isOpen;
+		});
+	
+		// if its mobile scale the container
+		if (window.innerWidth < 768) {
+			container.classList.add('animate-mobile');
+		} else {
+			container.classList.add('animate');
+		}
+	</script>
+</body>
+</html>

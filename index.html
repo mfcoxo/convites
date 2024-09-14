@@ -1,18 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Convite</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="paper.css">
 	<link rel="stylesheet" href="index.css">
-	
+    <title>Convite</title>
 </head>
-
 <body>
-	<div id="container" class="container">
-		<div class="back">
-			<div class="paper">
+    <div class="folder open">
+        <div class="part top">
+            <div class="triangle"></div>
+            <div class="triangle-back"></div>
+            <div class="seal">
+                <img src="images/selo.png" alt="Selo" />
+            </div>
+            <div class="logo">
+                <img src="images/logo.svg" alt="Logo" />
+                <span>Unidos pelo amor</span>
+            </div>
+            <div class="part top-reverse">
+                <div class="guests">
+                </div>
+            </div>
+        </div>
+        <div class="part middle">
+            <div class="paper">
 				<div class="names">
 					<img src="images/nomes.png" alt="Nomes dos noivos" />
 				</div>
@@ -33,45 +46,47 @@
 					<h2>Copo D'água</h2>
 					<div>Quinta da Barreta, em Alcabideche</div>
 				</div>
+				<div class="branch-left"></div>
+				<div class="branch-right"></div>
 			</div>
-			<div class="cover">
-				<div class="seal">
-					<img src="images/selo.png" alt="Selo" />
-				</div>
-			</div>
-			<div class="bottom">
-			</div>
-			<div class="bottom-fix">
-			</div>
-		</div>
-	</div>
-	<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-	<script type="text/javascript">
-		let isOpen = false;
-		let timer;
-		const container = document.querySelector('#container');
-		container.addEventListener('click', () => {
-			if (!isOpen) {
-				container.classList.add('open');
-				timer = setTimeout(() => {
-					confetti({
-						particleCount: 100,
-						spread: 70,
-					});
-				}, 3000);
-			}else{
-				clearTimeout(timer);
-				container.classList.remove('open');
-			}
-			isOpen = !isOpen;
-		});
-	
-		// if its mobile scale the container
-		if (window.innerWidth < 768) {
-			container.classList.add('animate-mobile');
-		} else {
-			container.classList.add('animate');
-		}
-	</script>
+        </div>
+        <div class="part bottom">
+            <div class="confirmation">
+                <div>Agradecemos confirmação até 01.04.2025</div>
+                <div class="phones">
+                    <div>Cátia 938 075 590</div>
+                    <div>Miguel 916 705 705</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const folder = document.querySelector('.folder');
+        let isOpen = true;
+
+        // get value from query param "guest"
+        const urlParams = new URLSearchParams(window.location.search);
+        const guests = urlParams.get('guests');
+
+        console.log(guests)
+
+        const guestElem = document.querySelector('.guests').textContent = guests;
+
+        document.body.addEventListener('click', () => {
+            if (!isOpen) {
+                folder.classList.remove('closing');
+                folder.classList.add('open');
+                isOpen = true;
+            } else {
+                folder.classList.add('closing');
+                folder.classList.remove('open');
+                isOpen = false;
+                setTimeout(() => {
+                    folder.classList.remove('closing');
+                }, 2000);
+            }
+        });
+    </script>
 </body>
 </html>
