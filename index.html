@@ -10,7 +10,7 @@
 </head>
 <body>
     <div id="main-wrapper">
-        <div class="folder open">
+        <div class="folder closed-top closed-bottom">
             <div class="part top">
                 <div class="triangle"></div>
                 <div class="triangle-back"></div>
@@ -32,6 +32,12 @@
                     <div class="phones">
                         <div>Cátia 938 075 590</div>
                         <div>Miguel 916 705 705</div>
+                    </div>
+                </div>
+                <div class="part bottom-reverse">
+                    <div class="invite-text">
+                        Queremos partilhar a alegria do nosso casamento<br/>
+                        um momento em que os nossos corações se entrelaçam para sempre
                     </div>
                 </div>
             </div>
@@ -67,7 +73,8 @@
     <script>
         const mainWrapper = document.querySelector('#main-wrapper');
         const folder = document.querySelector('.folder');
-        let isOpen = true;
+        let isTopClosed = true;
+        let isBottomClosed = true;
 
         // get value from query param "guest"
         const urlParams = new URLSearchParams(window.location.search);
@@ -76,12 +83,19 @@
         const guestElem = document.querySelector('.guests').textContent = guests;
 
         document.body.addEventListener('click', () => {
-            if (isOpen) {
-                folder.classList.add('closing');
-                folder.classList.remove('open');
-                isOpen = false;
+            if (isTopClosed) {
+                folder.classList.add('opening');
+                folder.classList.remove('closed-top');
+                isTopClosed = false;
                 setTimeout(() => {
-                    folder.classList.remove('closing');
+                    folder.classList.remove('opening');
+                }, 2000);
+            } else if (!isTopClosed && isBottomClosed) {
+                folder.classList.add('opening-bottom');
+                folder.classList.remove('closed-bottom');
+                isBottomClosed = false;
+                setTimeout(() => {
+                    folder.classList.remove('opening-bottom');
                 }, 2000);
             }
         });
