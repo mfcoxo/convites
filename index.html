@@ -71,7 +71,7 @@
 
         // get value from query param "guest"
         const urlParams = new URLSearchParams(window.location.search);
-        const guests = urlParams.get('guests');
+        const guests = atob(urlParams.get('guests'));
 
         const guestElem = document.querySelector('.guests').textContent = guests;
 
