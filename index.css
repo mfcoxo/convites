@@ -1,12 +1,33 @@
 @keyframes jump-shaking {
-    0% { transform: translateX(0) }
-    25% { transform: translateY(-9px) }
-    35% { transform: translateY(-9px) rotate(10deg) }
-    55% { transform: translateY(-9px) rotate(-10deg) }
-    65% { transform: translateY(-9px) rotate(10deg) }
-    75% { transform: translateY(-9px) rotate(-10deg) }
-    100% { transform: translateY(0) rotate(0) }
+    0% {
+        transform: translateX(0)
+    }
+
+    25% {
+        transform: translateY(-9px)
+    }
+
+    35% {
+        transform: translateY(-9px) rotate(10deg)
+    }
+
+    55% {
+        transform: translateY(-9px) rotate(-10deg)
+    }
+
+    65% {
+        transform: translateY(-9px) rotate(10deg)
+    }
+
+    75% {
+        transform: translateY(-9px) rotate(-10deg)
+    }
+
+    100% {
+        transform: translateY(0) rotate(0)
+    }
 }
+
 body {
     display: flex;
     justify-content: center;
@@ -17,35 +38,54 @@ body {
     perspective: 1000px;
     font-family: 'Times New Roman';
     overflow: hidden;
+
+
 }
+
+#main-wrapper {
+    &.mobile {
+        transform: scale(0.5);
+    }
+}
+
 .folder {
-    cursor: pointer;
     width: 600px;
     height: 650px;
     position: relative;
     transform-style: preserve-3d;
+    margin-top: -200px;
     transition: transform 2s ease-in-out;
     animation: jump-shaking 1s 2;
 }
+
+.folder.open {
+    cursor: pointer;
+}
+
 .part {
     position: absolute;
-    width: 100%;
+    width: 600px;
     background-color: #ad2641;
     box-sizing: border-box;
+    transform-style: preserve-3d;
     transition: transform 1s ease-in-out;
 }
-.top, .bottom {
-    transform-style: preserve-3d;
+
+.mobile .part {
+    transition: none;
 }
-.top-reverse, .bottom::after {
+
+.top-reverse,
+.bottom::after {
     content: '';
     position: absolute;
-    width: 100%;
+    width: 600px;
     height: 100%;
     backface-visibility: hidden;
     transform: rotateX(180deg);
 }
-.top { 
+
+.top {
     color: white;
     top: 0;
     z-index: 2;
@@ -57,7 +97,8 @@ body {
         transform: rotate(0deg);
     }
 
-    .triangle, .triangle-back {
+    .triangle,
+    .triangle-back {
         position: absolute;
         z-index: 3;
         width: 0px;
@@ -67,6 +108,7 @@ body {
         border-width: 0 300px 80px 300px;
         border-color: transparent transparent #a5243e transparent;
     }
+
     .triangle-back {
         z-index: 4;
         left: 0;
@@ -75,6 +117,7 @@ body {
         backface-visibility: hidden;
         border-color: transparent transparent #7f1b2f transparent;
     }
+
     .logo {
         display: flex;
         flex-direction: column;
@@ -88,8 +131,10 @@ body {
         backface-visibility: hidden;
     }
 }
+
 .top-reverse {
-    background-color: #a5243e;  /* Orange */
+    background-color: #a5243e;
+    /* Orange */
 
     .guests {
         position: absolute;
@@ -104,43 +149,58 @@ body {
         backface-visibility: hidden;
     }
 }
-.middle { 
+
+.middle {
     top: 160px;
     height: 500px;
-    background-color: #74182a;  /* Blue */
+    background-color: #74182a;
+    /* Blue */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 0;
 }
-.bottom { 
+
+.bottom {
     z-index: 1;
     top: 660px;
     height: 340px;
     transform-origin: top;
-    background-color: #7f1b2f;  /* Purple */
+    background-color: #7f1b2f;
+    /* Purple */
 }
+
 .bottom::after {
-    background-color: #ad2641;  /* Deep Orange */
+    z-index: 1;
+    background-color: #ad2641;
+    /* Deep Orange */
 }
+
 .folder.open .top {
     transform: rotateX(-180deg);
     transition-delay: 1s;
 }
+
 .folder.open .bottom {
     transform: rotateX(180deg);
 }
+
 .folder.closing .top {
     transition-delay: 0s;
 }
+
 .folder.closing .bottom {
     transition-delay: 1s;
 }
+
 .paper {
     margin: 20px;
     width: 560px;
     height: 460px;
     left: 0;
     top: 0;
-} 
-.seal, .seal-back {
+}
+
+.seal,
+.seal-back {
     position: absolute;
     top: -80px;
     left: 50%;
@@ -150,18 +210,22 @@ body {
     transform: translate(-50%, -50%) rotateX(180deg);
     background-color: #b78a59;
 }
+
 .seal {
     z-index: 3;
     top: -80px;
 }
+
 .branch-left {
     top: 5rem;
     left: 0;
 }
+
 .branch-right {
     top: 14rem;
     right: 0;
 }
+
 .confirmation {
     position: absolute;
     left: 50%;
@@ -173,6 +237,7 @@ body {
     letter-spacing: 1px;
     width: 350px;
 }
+
 .confirmation .phones {
     margin-top: 20px;
     display: flex;

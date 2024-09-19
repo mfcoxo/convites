@@ -109,9 +109,6 @@
     top: 2em;
     left: 2.5em;
     background: #fff;
-    -webkit-transition: 1.5s ease-in-out;
-    -moz-transition: 1.5s ease-in-out;
-    transition: all 1.5s ease-in-out;
     z-index: 1;
     text-align: center;
     padding: 1em;
