@@ -17,8 +17,9 @@
   
   .names {
       margin: 0 2rem 3rem 2rem;
-      img {
+      > img {
           width: 100%;
+          max-width: 364px;
           height: auto;
       }
   }
